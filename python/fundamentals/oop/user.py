@@ -1,25 +1,27 @@
+from bank_account import BankAccount
 class User:
-    def __init__(self, name, email):
+    def __init__(self, name, email, accounts):
         self.name = name
         self.email = email
-        self.balance = 0
+        self.accounts = accounts
     def make_deposit(self, amount):
-        self.balance += amount
+        self.accounts.deposit(amount)
         return self
     def make_withdrawl(self, amount):
-        self.balance -= amount
+        self.accounts.withdraw(amount)
         return self
     def display_user_balance(self):
-        print(self.balance)
+        print(self.name)
+        self.accounts.display_account_info()
         return self
     def transfer_money(self, user, amount):
-        self.balance -= amount
-        user.balance += amount
+        self.accounts.withdraw(amount)
+        user.accounts.deposit(amount)
         return self
 
-bob = User('Bob Thorton', 'billy@bob.com')
-miria = User('Miria Harvent', 'miria@baccano.com')
-hanna = User('Hanna Coleman', 'hcoleman@gmail.com')
+bob = User('Bob Thorton', 'billy@bob.com', BankAccount(0.02, 25))
+miria = User('Miria Harvent', 'miria@baccano.com', BankAccount(0.02, 25))
+hanna = User('Hanna Coleman', 'hcoleman@gmail.com', BankAccount(0.02, 25))
 
 bob.make_deposit(20)
 bob.make_deposit(20)
