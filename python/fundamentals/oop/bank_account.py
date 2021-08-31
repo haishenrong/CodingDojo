@@ -8,7 +8,11 @@ class BankAccount:
         self.balance += amount
         return self
     def withdraw(self, amount):
-        self.balance -= amount
+        if self.balance>= amount:
+            self.balance -= amount
+        else:
+            print("Insufficient funds, charging a 5 dollar fee.")
+            self.balance -= 5 
         return self
     def display_account_info(self):
         print('Balance:', self.balance)
@@ -22,6 +26,7 @@ class BankAccount:
         for account in cls.all_accounts:
             account.display_account_info()
 
+'''
 bob = BankAccount(0.02, 25)
 miria = BankAccount(0.5, -500)
 
@@ -29,3 +34,4 @@ bob.deposit(25).deposit(25).deposit(25).withdraw(-100).yield_interest().display_
 miria.deposit(200).deposit(200).withdraw(50).withdraw(50).withdraw(-200).withdraw(-200).yield_interest().display_account_info()
 
 BankAccount.allAccounts()
+'''
