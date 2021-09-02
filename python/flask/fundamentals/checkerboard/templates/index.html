@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <h2 style="margin: 40px auto; text-align: center;">***Checkerboard***</h2>
+    {% if x is not defined %}
+        {% set x = 8 %}
+    {% endif %}
+    {% if y is not defined %}
+        {% set y = 8 %}
+    {% endif %}
+    {% if color1 is not defined %}
+        {% set color1 = "cornflowerblue" %}
+    {% endif %}
+    {% if color2 is not defined %}
+        {% set color2 = "maroon" %}
+    {% endif %}
+    <div style="display:flex; justify-content: center;">
+        {% for a in range(0,y): %}
+            <div class="row">
+            {% for b in range(0,x): %}
+                {% if (b%2+a%2)%2 == 0 %}
+                    <div class="boxes-light" style="background-color:{{color1}};"></div>
+                {% endif %}
+                {% if (b%2+a%2)%2 == 1 %}
+                    <div class="boxes-dark" style="background-color:{{color2}};"></div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
