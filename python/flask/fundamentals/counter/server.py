@@ -16,7 +16,7 @@ def home():
             session['counter'] = 0
         elif "change" in request.form:
             session['increment'] = int(request.form.get('incrementVal'))
-    return render_template('index.html')
+    return render_template('index.html', counter = session['counter'])
 
 @app.route('/destroy_session')         
 def clear():
