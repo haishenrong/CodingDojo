@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="center">Counter</h1>
+    <p class="center">{{session['counter']}} times</p>
+    <form class="center" action='/' method='post'>
+        <label for='incrementVal'>Increment Value:</label>
+        <input type='number' name='incrementVal'>
+        <input type='submit' name='change' value='change'>
+        <input type="submit" name="increment" value="increment">
+        <input type="submit" name="reset" value="reset">
+    </form>
+</body>
+</html>
