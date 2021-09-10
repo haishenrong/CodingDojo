@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+        crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+        rel="stylesheet"
+    />
+    <title>Document</title>
+</head>
+<body>
+    <div style="display:flex; justify-content:space-around;">
+        <div>
+            <h1 style="text-align:center;"> Add Dojo</h1>
+            <form style="text-align:center;" action="/create_dojo" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name">
+                </div>
+                <input type="submit" value="Create">
+            </form> 
+        </div>
+        <div>
+            <h1 style="text-align: center">All Dojos</h1>
+            <table class="table">
+                <tbody>
+                    {% for dojo in dojos:%}
+                    <tr>
+                        <td>
+                        <a href="http://localhost:5000/dojos/{{dojo.id}}">{{dojo.name}}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="http://localhost:5000/add_ninja">Add Ninja</a>
+        </div>
+    </div>
+</body>
+</html>
