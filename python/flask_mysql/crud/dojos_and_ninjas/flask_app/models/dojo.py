@@ -40,11 +40,3 @@ class Dojo:
             dojo.ninjas.append( ninja.Ninja( ninja_data ) )
         return dojo
     # come undone
-    @classmethod
-    def update_user(cls, data):
-        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = NOW() WHERE id = %(id)s;"
-        return connectToMySQL('users_schema').query_db( query, data )
-    @classmethod
-    def delete(cls, data):
-        query = "DELETE FROM users WHERE id = %(id)s;"
-        return connectToMySQL('users_schema').query_db( query, data )

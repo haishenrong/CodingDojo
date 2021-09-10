@@ -35,6 +35,7 @@ def create_dojo():
     Dojo.save_dojo(data)
     return redirect('/dojos')
 
+# only route in which I would put in a controllers/ninjas.py
 @app.route('/create_ninja', methods=["POST"])
 def create_ninja():
     data = {
