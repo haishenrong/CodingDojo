@@ -120,7 +120,7 @@ for line in lines2:
 input_len = len(data[0]) - 1
 output_len = len(set([row[-1] for row in data]))
 network = initialize_network(input_len, 30, output_len)
-train_nn(network, data, 0.30, 20)
+train_nn(network, data, 0.30, 500)  
 
 ones = 0
 zero = 0
