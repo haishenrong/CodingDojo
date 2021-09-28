@@ -39,7 +39,7 @@ public class Order {
         for(Item item: items){
             System.out.printf("%s - $%.2f\n", item.getName(), item.getPrice());
         }
-        System.out.println(getTotal());
+        System.out.printf("$%.2f\n",getTotal());
     }
 
 
