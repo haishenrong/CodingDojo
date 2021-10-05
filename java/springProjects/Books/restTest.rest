@@ -1,0 +1,32 @@
+GET http://localhost:8080/api/books
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/books/1
+
+###
+
+POST http://localhost:8080/api/books2
+Content-Type: application/json
+
+{
+    "title": "The Beautiful and the Damned",
+    "description": "They are one and the same.",
+    "language": "English",
+    "pages": 353
+}
+
+###
+PUT http://localhost:8080/api/books2/2
+Content-Type: application/json
+
+{
+    "title": "The House in the Cerulean Seas",
+    "description": "A House floats in a vast and empty blue ocean.",
+    "language": "English",
+    "pages": 398
+}
+
+###
+DELETE http://localhost:8080/api/books/3
+###
