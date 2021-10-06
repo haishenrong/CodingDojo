@@ -36,7 +36,16 @@
 						<td><c:out value="${entry.getVendor()}"></c:out></td>
 						<td><fmt:setLocale value = "en_US"/>
 							<fmt:formatNumber value = "${entry.getAmount()}" type = "currency"/></td>
-						<td><a href="/entries/edit/${entry.getId()}">edit</a></td>
+						<td>
+							<div style="display:flex; gap:10px;">
+								<a href="/entries/edit/${entry.getId()}">edit</a>
+								<form action="/entries/${entry.id}" method="post">
+	    							<input type="hidden" name="_method" value="delete">
+	    							<input class="btn btn-danger btn-sm" type="submit" value="Delete">
+								</form>
+							</div>
+						</td>
+						
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -18,7 +18,10 @@
 </head>
 <body>
 	<div style="margin:15px;">
-		<h1>Edit Entry</h1>
+		<div style="display:flex;">
+			<h1>Edit Entry</h1>
+			<a style="margin-left:auto;"href = "/entries/">Go Back</a>
+		</div>
 		<form:form action="/entries/${entry.id}" method="post" modelAttribute="entry">
 		    <input type="hidden" name="_method" value="put">
 			<p style="color:red;"><form:errors path="expense"/></p>

@@ -17,10 +17,14 @@
 </head>
 <body>
 	<div style="margin:15px">
-		<h1><c:out value="${entry.getExpense()}"></c:out></h1>
+		<div style="display:flex;">
+			<h1>PokeBook Entry Details</h1>
+			<a style="margin-left:auto;"href = "/entries/">Go Back</a>
+		</div>
+		<p>Expense Name:<c:out value="${entry.getExpense()}"></c:out></p>
+		<p>Expense Description: <c:out value="${entry.getDescription()}"></c:out></p>
 		<p>Vendor: <c:out value="${entry.vendor}"></c:out></p>
-		<p>Amount: <c:out value="${entry.amount}"></c:out></p>
-		<p>Description: <c:out value="${entry.getDescription()}"></c:out></p>
+		<p>Amount Spent: <c:out value="${entry.amount}"></c:out></p>
 	</div>
 </body>
 </html>

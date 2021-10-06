@@ -63,4 +63,9 @@ public class PokeBookController {
             return "redirect:/entries/";
         }
     }
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    public String destroy(@PathVariable("id") Long id) {
+        pokebookService.deleteEntry(id);
+        return "redirect:/entries/";
+    }
 }
