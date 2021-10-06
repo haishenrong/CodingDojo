@@ -32,7 +32,7 @@ public class PokeBookController {
 	}
 	
 	@RequestMapping("/{id}")
-	public String index(Model model, @PathVariable("id") Long id) {
+	public String single(Model model, @PathVariable("id") Long id) {
 		PokeBook entry = pokebookService.findEntry(id);
 		model.addAttribute("entry", entry);
 		return entry == null ? "none.jsp": "one.jsp";
@@ -44,6 +44,22 @@ public class PokeBookController {
             return "index.jsp";
         } else {
             pokebookService.createEntry(entry);
+            return "redirect:/entries/";
+        }
+    }
+    
+    @RequestMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Long id, Model model) {
+        PokeBook entry = pokebookService.findEntry(id);
+        model.addAttribute("entry", entry);
+        return "edit.jsp";
+    }
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+    public String update(@Valid @ModelAttribute("entry") PokeBook entry, BindingResult result) {
+        if (result.hasErrors()) {
+            return "edit.jsp";
+        } else {
+            pokebookService.updateEntry(entry);
             return "redirect:/entries/";
         }
     }

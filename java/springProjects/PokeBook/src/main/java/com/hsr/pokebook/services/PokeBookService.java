@@ -36,6 +36,9 @@ public class PokeBookService {
     	entry.setId(id);
     	return pokebookRepository.save(entry);
     }
+    public PokeBook updateEntry(PokeBook entry) {
+    	return pokebookRepository.save(entry);
+    }
     public void deleteEntry(Long id) {
     	pokebookRepository.deleteById(id);
     }

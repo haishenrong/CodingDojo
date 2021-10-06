@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isErrorPage="true" %>   
 <!DOCTYPE html>
 <html>
@@ -18,33 +17,10 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<div style="margin:15px">
-		<h1>PokeBook</h1>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope = "col">Expense</th>
-					<th scope = "col">Vendor</th>
-					<th scope = "col">Amount</th>
-					<th scope = "col">Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="entry" items="${entries}">
-					<tr>
-						<td><a href="/entries/${entry.getId()}"><c:out value="${entry.getExpense()}"></c:out></a></td>
-						<td><c:out value="${entry.getVendor()}"></c:out></td>
-						<td><fmt:setLocale value = "en_US"/>
-							<fmt:formatNumber value = "${entry.getAmount()}" type = "currency"/></td>
-						<td><a href="/entries/edit/${entry.getId()}">edit</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
 	<div style="margin:15px;">
-		<h1>Track an Expense:</h1>
-		<form:form action="/entries" method="post" modelAttribute="entry">
+		<h1>Edit Entry</h1>
+		<form:form action="/entries/${entry.id}" method="post" modelAttribute="entry">
+		    <input type="hidden" name="_method" value="put">
 			<p style="color:red;"><form:errors path="expense"/></p>
 			<p>
 		        <form:label path="expense">Expense</form:label>
@@ -64,9 +40,9 @@
 			<p>
 		        <form:label path="description">Description</form:label>
 		        <form:textarea path="description"/>
-		    </p>    
+		    </p>       
 		    <input type="submit" value="Submit"/>
-		</form:form> 
-	</div>  
+		</form:form>
+	</div>
 </body>
 </html>
