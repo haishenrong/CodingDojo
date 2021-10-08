@@ -21,6 +21,15 @@ public class UserService {
     	this.userRepo = userRepo;
     }
     
+    public User findUser(Long id) {
+        Optional<User> optionalUser = userRepo.findById(id);
+        if(optionalUser.isPresent()) {
+            return optionalUser.get();
+        } else {
+            return null;
+        }
+    }
+    
     public User register(User newUser, BindingResult result) {
         if(userRepo.findByEmail(newUser.getEmail()).isPresent()) {
             result.rejectValue("email", "Unique", "This email is already in use!");

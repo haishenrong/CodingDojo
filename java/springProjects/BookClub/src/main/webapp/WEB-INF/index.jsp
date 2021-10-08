@@ -55,7 +55,8 @@
 	            <label>Password:</label>
 	            <form:password path="password" class="form-control" />
 	            <form:errors path="password" class="text-danger" />
-	        </div type="submit" value="Login" class="btn btn-success" />
+	        </div>
+	        <input type="submit" value="Login" class="btn btn-success" />
 	    </form:form>
 	</div>
 </body>

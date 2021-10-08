@@ -3,9 +3,11 @@ package com.hsr.bookclub.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hsr.bookclub.models.Book;
+import com.hsr.bookclub.models.User;
 import com.hsr.bookclub.repositories.BookRepository;
 
 @Service
@@ -13,6 +15,7 @@ public class BookService {
     // adding the book repository as a dependency
     private final BookRepository bookRepository;
     
+    @Autowired
     public BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
@@ -33,8 +36,8 @@ public class BookService {
             return null;
         }
     }
-    public Book updateBook(Long id, String title, String author, String thoughts) {
-    	Book book = new Book(title, author, thoughts);
+    public Book updateBook(Long id, String title, String author, String thoughts,User user) {
+    	Book book = new Book(title, author, thoughts, user);
     	book.setId(id);
     	return bookRepository.save(book);
     }

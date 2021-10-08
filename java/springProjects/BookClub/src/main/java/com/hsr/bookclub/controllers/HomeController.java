@@ -55,4 +55,10 @@ public class HomeController {
         session.setAttribute("user_id", user.getId());
         return "redirect:/home";
     }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+    	session.removeAttribute("user_id");
+    	return "redirect:/";
+    }
 }
