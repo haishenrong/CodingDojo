@@ -1,0 +1,44 @@
+GET http://localhost:8080/api/dojos
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/ninjas
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/dojos/1
+
+###
+
+POST http://localhost:8080/api/dojos2
+Content-Type: application/json
+
+{
+    "name":"Bob's Burgers"
+}
+
+###
+POST http://localhost:8080/api/ninjas2
+Content-Type: application/json
+
+{
+    "firstName": "Sideshow",
+    "lastName": "Bob",
+    "age": 37,
+    "dojoId": 2
+}
+
+###
+PUT http://localhost:8080/api/books2/3
+Content-Type: application/json
+
+{
+    "title": "The Genius",
+    "description": "A well-meaning idiot tries to survive in Russia",
+    "language": "Cyrillic",
+    "pages": 524
+}
+
+###
+DELETE http://localhost:8080/api/books/5
+###
