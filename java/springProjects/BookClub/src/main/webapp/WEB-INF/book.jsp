@@ -28,6 +28,9 @@
 		<div style="width:50%;margin:20px; padding:25px;;border-top:4px solid black; border-bottom: 4px solid black;">
 			<p><c:out value="${book.getThoughts()}"></c:out></p>
 		</div>
+		<c:if test = "${book.user.equals(user)}">
+			<a href="/edit/${book.getId()}">edit</a>
+		</c:if>
 	</div>
 
 </body>

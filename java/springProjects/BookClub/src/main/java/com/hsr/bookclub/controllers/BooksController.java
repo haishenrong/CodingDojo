@@ -49,6 +49,9 @@ public class BooksController {
 			return "redirect:/";
 		Book book = bookService.findBook(id);
 		model.addAttribute("book", book);
+		Long userId = (Long) session.getAttribute("user_id");
+		User user = userService.findUser(userId);
+		model.addAttribute("user", user);
 		return book == null ? "none.jsp": "book.jsp";
 	}
 	
@@ -71,5 +74,26 @@ public class BooksController {
 	        return "redirect:/home";
 	    }
 	}
+	
+	@RequestMapping("/edit/{id}")
+    public String edit(HttpSession session, @PathVariable("id") Long id, Model model) {
+		if(session.getAttribute("user_id") == null)
+			return "redirect:/";
+		Long userId = (Long) session.getAttribute("user_id");
+		User user = userService.findUser(userId);
+		model.addAttribute("user", user);
+        Book book = bookService.findBook(id);
+        model.addAttribute("book", book);
+        return "edit.jsp";
+    }
+    @RequestMapping(value="/books/{id}", method=RequestMethod.PUT)
+    public String update(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "edit.jsp";
+        } else {
+            bookService.updateBook(book);
+            return "redirect:/home/";
+        }
+    }
 	
 }
