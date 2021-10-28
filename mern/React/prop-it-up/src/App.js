@@ -3,7 +3,7 @@ import PersonCard from './components/PersonCard'
 
 function App() {
   return (
-    <div>
+    <div className="App-header">
       <PersonCard lastName="Doe" firstName="Jane" age="45" hairColor="Black"/>
       <PersonCard lastName="Smith" firstName="John" age="88" hairColor="Brown"/>
       <PersonCard lastName="Fillmore" firstName="Millard" age="50" hairColor="Brown"/>
