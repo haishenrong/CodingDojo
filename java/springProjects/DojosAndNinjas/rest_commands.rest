@@ -29,14 +29,13 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/api/books2/3
+POST http://localhost:8080/api/books2
 Content-Type: application/json
 
 {
-    "title": "The Genius",
-    "description": "A well-meaning idiot tries to survive in Russia",
-    "language": "Cyrillic",
-    "pages": 524
+    "title": "The Slow Regard of Silent Things",
+    "author": "Patrick Rothfuss",
+    "thoughts": "Whether or not something is a waste of time, is up to the one who decides whether or not to waste."
 }
 
 ###

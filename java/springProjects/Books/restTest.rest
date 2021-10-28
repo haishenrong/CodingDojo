@@ -17,16 +17,16 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/api/books2/2
+PUT http://localhost:8080/api/books2/3
 Content-Type: application/json
 
 {
-    "title": "The House in the Cerulean Seas",
-    "description": "A House floats in a vast and empty blue ocean.",
-    "language": "English",
-    "pages": 398
+    "title": "The Genius",
+    "description": "A well-meaning idiot tries to survive in Russia",
+    "language": "Cyrillic",
+    "pages": 524
 }
 
 ###
-DELETE http://localhost:8080/api/books/3
+DELETE http://localhost:8080/api/books/5
 ###

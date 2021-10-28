@@ -8,9 +8,7 @@ def default():
 
 @app.route("/users")
 def index():
-    users = User.get_all()
-    print(users)
-    return render_template("index.html", users=users)
+    return render_template("index.html", users=User.get_all())
 
 @app.route("/add_user")
 def add_user():
@@ -26,18 +24,18 @@ def create_user():
     User.save_user(data)
     return redirect('/users')
 
-@app.route('/show/<id>')
+@app.route('/show/<int:id>')
 def one_user(id):
     data = {
-        "id": int(id)
+        "id": id
     }
     user = User.get_one(data)
     return render_template("one_user.html", user=user[0])
 
-@app.route('/edit/<id>')
+@app.route('/edit/<int:id>')
 def edit_user(id):
     data = {
-        "id": int(id)
+        "id": id
     }
     user = User.get_one(data)
     return render_template("edit_user.html", user=user[0])

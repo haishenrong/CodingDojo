@@ -1,3 +1,4 @@
+from flask.helpers import flash
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import ninja
 
@@ -39,4 +40,9 @@ class Dojo:
             }
             dojo.ninjas.append( ninja.Ninja( ninja_data ) )
         return dojo
+
+
+
+
+
     # come undone

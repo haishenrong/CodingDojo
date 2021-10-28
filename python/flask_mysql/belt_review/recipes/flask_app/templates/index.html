@@ -26,7 +26,7 @@
                     {% if messages %}                            
                         {% for message in messages %}  
                             {% if 'Invalid' not in message%}         
-                            <p>{{message}}</p>      
+                            <p class="text-danger">{{message}}</p>      
                             {% endif %}            
                         {% endfor %}
                     {% endif %}

@@ -19,8 +19,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="display:flex; justify-content:space-around;">
-        <div>
+    <div class="container row">
+        <div class='col'>
             <h1 style="text-align:center;"> Register</h1>
                 {% with messages = get_flashed_messages() %}    
                     {% if messages %}                            
@@ -31,7 +31,7 @@
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
-            <form style="text-align:center;" action="/create_user" method="POST">
+            <form action="/create_user" method="POST">
                 <div class="form-group">
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name">
@@ -55,7 +55,7 @@
                 <input type="submit" value="Register">
             </form> 
         </div>
-        <div>
+        <div class="col">
             <h1 style="text-align:center;"> Login </h1>
             {% with messages = get_flashed_messages() %}    
                 {% if messages %}                            
@@ -66,7 +66,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <form style="text-align:center;" action="/login" method="POST">
+            <form action="/login" method="POST">
                 <div class="form-group">
                     <label for="email"> Email:</label>
                     <input type="text" name="email">

@@ -24,7 +24,7 @@ def create_user():
     if User.validate_form(data):
         data['password'] = bcrypt.generate_password_hash(request.form['password'])
         user_id = User.save_user(data)
-        session['user_id'] = user_id['id']
+        session['user_id'] = user_id
         return redirect('/logged')
     return redirect('/')
 
@@ -34,13 +34,14 @@ def login():
     data = {
         "email": request.form['email']
     }
-    loggedUser = User.get_one(data)
-    if not loggedUser:
-        flash("Invalid Email/Password")
+    loggedUser = User.get_one_email(data)
+    validation_data =  {
+        "loggedUser":loggedUser,
+        "password":request.form['password'] 
+    }
+    if not User.validate_login(validation_data):
         return redirect("/")
-    if not bcrypt.check_password_hash(loggedUser.password, request.form['password']):
-        flash("Invalid Email/Password")
-        return redirect('/')
+
     session['user_id'] = loggedUser.id
     return redirect('/logged')
 
@@ -49,7 +50,7 @@ def logged():
     data = {
         "id": session['user_id']
     }
-    loggedUser = User.get_by_id(data)
+    loggedUser = User.get_one_id(data)
     return  render_template("one_user.html", user = loggedUser)
 
 @app.route('/logout', methods = ['POST'])

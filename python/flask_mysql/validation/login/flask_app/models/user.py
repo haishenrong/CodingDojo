@@ -1,7 +1,9 @@
-from flask.helpers import flash
 from flask_app.config.mysqlconnection import connectToMySQL
 import re
-
+from flask_app import app
+from flask.helpers import flash
+from flask_bcrypt import Bcrypt        
+bcrypt = Bcrypt(app)  
 
 NAME_REGEX = re.compile(r'^[a-zA-Z]{2,}$')
 PASSWORD_REGEX = re.compile(r'^(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}$')
@@ -21,13 +23,12 @@ class User:
     @classmethod
     def save_user(cls, data):
         query = "INSERT INTO users ( first_name, last_name, email, password, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s , NOW() , NOW() );"
-        connectToMySQL('login_schema').query_db( query, data )
-        query2 = "SELECT id from users WHERE email = %(email)s;"
-        result = connectToMySQL('login_schema').query_db(query2, data)
-        return result[0]
+        insertResult = connectToMySQL('login_schema').query_db( query, data )
+        print(insertResult)
+        return insertResult
 
     @classmethod
-    def get_one(cls, data):
+    def get_one_email(cls, data):
         query = "SELECT * FROM users WHERE email = %(email)s;"
         result = connectToMySQL('login_schema').query_db( query, data )
         if len(result) < 1:
@@ -35,7 +36,7 @@ class User:
         return cls(result[0])
 
     @classmethod
-    def get_by_id(cls, data):
+    def get_one_id(cls, data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
         result = connectToMySQL('login_schema').query_db( query, data )
         return cls(result[0])
@@ -67,6 +68,17 @@ class User:
         if is_valid:
             flash("Registration Sucessful.")
         return is_valid
+    
+    @staticmethod
+    def validate_login(data):
+        is_valid = True    
+        if not data['loggedUser']:
+            flash("Invalid Email/Password")
+            is_valid = False
+        elif not bcrypt.check_password_hash(data['loggedUser'].password, data['password']):
+            flash("Invalid Email/Password")
+            is_valid = False
+        return is_valid   
     
 
     # come undone

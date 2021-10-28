@@ -26,21 +26,15 @@ public class TestCafe {
         System.out.printf("Order total: $%s \n",appTest.getOrderTotal(lineItems));
 
         System.out.println("----- Display Menu Test-----");
-        List<String> loadMenu = Arrays.asList( "drip coffee", "cappucino", "latte", "mocha" );
-        List<Double> loadPrices = Arrays.asList(1.5, 3.5, 4.5, 3.5);
-        ArrayList<String> menu = new ArrayList<String>();
-        ArrayList<Double> prices = new ArrayList<Double>();
-            
-        // Note: Below is a way to add multiple elements to a list in fewer lines.
-        // It does require an extra import at the top of the file.
-        menu.addAll(loadMenu);
-        prices.addAll(loadPrices);
-        appTest.displayMenu(menu, prices);
+        List<String> list = Arrays.asList( "drip coffee", "cappucino", "latte", "mocha");
+        list.add("hello");
+        System.out.println(list.get(4));
+        appTest.displayMenu(new ArrayList<String>(Arrays.asList( "drip coffee", "cappucino", "latte", "mocha")), new ArrayList<Double>(Arrays.asList(1.5, 3.5, 4.5, 3.5)));
 
         System.out.println("----- Add Customer Test-----");
         ArrayList<String> customers = new ArrayList<String>();
         // Test 4 times
-        for (int i = 0; i < 4; i++) { 
+        for (int i = 0; i < 4; i++){ 
             appTest.addCustomer(customers); 
             System.out.println(customers);
         }

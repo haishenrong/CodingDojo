@@ -24,7 +24,7 @@ public class CafeUtil {
 
     public void displayMenu(ArrayList<String> names, ArrayList<Double> prices){
         for(int i = 0; i< names.size();i++)
-            System.out.println(i+ " " + names.get(i) + " -- $" + prices);
+            System.out.println(i+ " " + names.get(i) + " -- $" + prices.get(i));
         return;
     }
 

@@ -1,0 +1,17 @@
+{
+  "name": "babyjoy",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "babyjoy",
+  "main": "test.js",
+  "dependencies": {
+    "node-fetch": "^3.0.0",
+    "node-rsa": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

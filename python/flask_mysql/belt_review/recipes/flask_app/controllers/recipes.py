@@ -11,18 +11,17 @@ bcrypt = Bcrypt(app)
 def one_recipe(id):
     if 'user_id' not in session: 
         flash('Please register or login')
-        return render_template("index.html")
+        return redirect('/')
     data = {
-        "id": id
-    }
-    data2 = {
-        "id": int(session['user_id'])
+        "recipe_id": id,
+        "user_id": int(session['user_id'])
     }
     recipe = Recipe.get_by_id(data)
     recipe.date_made = recipe.date_made.strftime("%b %#dth, %Y")
     recipe.instructions = recipe.instructions.replace('\n', '<br>')
-    user = User.get_by_id(data2)
-    return render_template("recipe.html", recipe = recipe, user = user)
+    user = User.get_by_id(data)
+    likes = Recipe.get_likes(data)
+    return render_template("recipe.html", recipe = recipe, user = user,likes = likes)
 
 @app.route("/recipes/new", methods = ['GET', 'POST'])
 def new_recipe():
@@ -80,6 +79,30 @@ def edit_recipe(id):
             return redirect('/logged')
         return redirect('/recipes/edit/'+str(id))
 
+@app.route("/recipes/like/<int:id>", methods = ['POST'])
+def like(id):
+    if 'user_id' not in session: 
+        flash('Please register or login')
+        return render_template("index.html")
+    data = {
+        "user_id": session['user_id'],
+        "recipe_id": id
+    }
+    Recipe.like(data)
+    return redirect('/recipes/'+str(id))
+
+
+@app.route("/recipes/unlike/<int:id>", methods = ['POST'])
+def unlike(id):
+    if 'user_id' not in session: 
+        flash('Please register or login')
+        return render_template("index.html")
+    data = {
+        "user_id": session['user_id'],
+        "recipe_id": id
+    }
+    Recipe.unlike(data)
+    return redirect('/recipes/'+str(id))
 
 @app.route("/recipes/delete/<int:id>")
 def delete(id):

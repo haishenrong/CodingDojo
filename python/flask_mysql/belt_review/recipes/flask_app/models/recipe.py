@@ -32,7 +32,7 @@ class Recipe:
 
     @classmethod
     def get_by_id(cls, data):
-        query = "SELECT * FROM recipes WHERE id = %(id)s;"
+        query = "SELECT * FROM recipes WHERE id = %(recipe_id)s;"
         result = connectToMySQL('recipes_schema').query_db( query, data )
         return cls(result[0])
 
@@ -45,7 +45,37 @@ class Recipe:
     def delete(cls, data):
         query = "DELETE FROM recipes WHERE id = %(id)s;"
         return connectToMySQL('recipes_schema').query_db( query, data )
-        
+
+    @classmethod
+    def get_all_likes(cls):
+        query = "SELECT COUNT(user_id) FROM likes GROUP BY recipe_id;"
+        results = connectToMySQL('recipes_schema').query_db( query)
+        likes = []
+        for value in results:
+            likes.append(value['COUNT(user_id)'])
+        return likes
+
+    @classmethod
+    def get_likes(cls, data):
+        query = "SELECT COUNT(user_id) FROM likes WHERE recipe_id = %(recipe_id)s;"
+        results = connectToMySQL('recipes_schema').query_db( query, data )
+        query2 = "SELECT * from likes WHERE user_id = %(user_id)s AND recipe_id = %(recipe_id)s;"
+        results2 = connectToMySQL('recipes_schema').query_db( query2, data)
+        together = []
+        together.append(results[0]['COUNT(user_id)'])
+        print(results2)
+        together.append(len(results2))
+        return together
+    
+    @classmethod
+    def like(cls, data):
+        query = "INSERT INTO likes (recipe_id, user_id) VALUES (%(recipe_id)s, %(user_id)s);"
+        return connectToMySQL('recipes_schema').query_db( query, data )
+    
+    @classmethod
+    def unlike(cls, data):
+        query = "DELETE FROM likes WHERE recipe_id = %(recipe_id)s AND user_id = %(user_id)s;"
+        return connectToMySQL('recipes_schema').query_db( query, data )
 
     @staticmethod
     def validate_form(data):

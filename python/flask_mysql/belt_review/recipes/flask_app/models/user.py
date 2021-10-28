@@ -39,7 +39,7 @@ class User:
 
     @classmethod
     def get_by_id(cls, data):
-        query = "SELECT * FROM users WHERE id = %(id)s;"
+        query = "SELECT * FROM users WHERE id = %(user_id)s;"
         result = connectToMySQL('recipes_schema').query_db( query, data )
         return cls(result[0])
 

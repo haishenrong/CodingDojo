@@ -20,12 +20,14 @@
             <a href="/logout">Logout</a>
         </div> 
     </div>
-    <h2 style="margin:10px 50px;"> These are the recipes </h2>
-    <table class = "table" style="margin:10px 50px;">
+    <div style="margin:10px 50px;">
+    <h2> These are the recipes </h2>
+    <table class = "table">
         <tr>
             <th>Name</th>
             <th>Under 30 Minutes</th>
             <th>Actions</th>
+            <th>Likes</th>
         <tr>
         {% for recipe in recipes %}
             <tr>
@@ -42,9 +44,11 @@
                         <a href = '/recipes/delete/{{recipe.id}}'>delete</a>
                     {% endif %}
                 </td>
+                <td>{{likes[loop.index0]}}</td>
             </tr>
         {% endfor %}
     </table>
+    </div>
 
 </body>
 </html>

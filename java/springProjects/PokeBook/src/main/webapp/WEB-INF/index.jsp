@@ -44,8 +44,7 @@
 	    							<input class="btn btn-danger btn-sm" type="submit" value="Delete">
 								</form>
 							</div>
-						</td>
-						
+						</td>	
 					</tr>
 				</c:forEach>
 			</tbody>

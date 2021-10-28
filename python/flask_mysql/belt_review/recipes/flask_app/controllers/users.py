@@ -50,13 +50,15 @@ def login():
 def logged():
     if 'user_id' not in session: 
         flash('Please register or login')
-        return render_template("index.html")
+        return redirect("/")
     data = {
-        "id": session['user_id']
+        "user_id": session['user_id']
     }
     loggedUser = User.get_by_id(data)
     recipes = Recipe.get_all()
-    return  render_template("one_user.html", user = loggedUser, recipes = recipes)
+    likes = Recipe.get_all_likes()
+    return  render_template("one_user.html", 
+    user = loggedUser, recipes = recipes, likes = likes)
 
 @app.route('/logout')
 def logout():

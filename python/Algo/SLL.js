@@ -168,7 +168,79 @@ class SLList{
         runner.next = prependee
         console.log('loc is null')
     }
+    moveMinToFront(){
+        var runner=this.head;
+        if(this.head==null){
+            console.log("This is an empty list");
+            return
+        }
+        else if(this.head.next==null){
+            console.log("This is the min");
+            return
+        }
+        var min = runner.value;
+        while(runner.next!=null){
+            if(min > runner.next.value){
+                min = runner.next.value;
+            }
+            runner=runner.next
+        }
+        runner=this.head
+        while(runner.next.value!=min){
+            runner=runner.next
+        }
+        runner.next=runner.next.next
 
+        var newNode = new Node(min);
+        newNode.next = this.head;
+        this.head = newNode;
+        return this;
+    }
+
+
+    moveMaxToBack(){
+        var runner=this.head;
+        if(this.head==null){
+            console.log("This is an empty list");
+            return
+        }
+        else if(this.head.next==null){
+            console.log("This is the min");
+            return
+        }
+        var max = runner.value;
+        while(runner.next!=null){
+            if(max < runner.next.value){
+                max = runner.next.value;
+            }
+            runner=runner.next
+        }
+        runner=this.head
+        while(runner.next.value!=max){
+            runner=runner.next
+        }
+        runner.next=runner.next.next
+
+        this.addToBack(max);
+        return this.head;
+    }
+
+    reverse = () => {
+        if(this.head == null || this.head.next == null)
+            return this;
+        var backRunner = this.head;
+        var runner = this.head.next;
+        var forwardRunner = this.head.next;
+        backRunner.next = null;
+        while (runner != null){
+            forwardRunner = forwardRunner.next;
+            runner.next = backRunner;
+            backRunner = runner;
+            runner = forwardRunner;
+        }
+        this.head = backRunner;
+        return;
+    }
 }
 
 const sll = new SLList();
@@ -183,6 +255,5 @@ sll.addToBack(-5)
 sll.addToBack(-15)
 sll.addToBack(14) // back should be lost
 
-//sll.appendValue(0, 1001)
-sll.prependValueNull(15, 10)
-sll.printValues()
+sll.reverse();
+sll.printValues();
