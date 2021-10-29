@@ -17,23 +17,23 @@ const PersonCard = props => {
         setEntry(e.target.value);
         e.target.value.length < 1 
             ? setError("Must not be empty")
-            : (e.target.value.length<len 
+            : e.target.value.length<len 
                 ? setError("Must be at least "+len+" characters long!")
-                : setError(""))
+                : setError("")
     }
     const handleConfirm = (e) =>{
         setConfirm(e.target.value);
         e.target.value.length < 1 
             ? setConfirmError("Must not be empty")
-            : (e.target.value.length<8
+            : e.target.value.length<8
                 ? setConfirmError("Must be at least 8 characters long!")
-                : (e.target.value !== password 
+                : e.target.value !== password 
                     ? setConfirmError("Passwords must match")
-                    : setConfirmError("")))
+                    : setConfirmError("")
     }
     return (
         <div>
-            <form>
+            <form >
                 <div>
                     <label>First Name:</label>
                     {
