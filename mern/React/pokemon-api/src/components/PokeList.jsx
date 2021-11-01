@@ -21,6 +21,7 @@ const PokeList = () => {
 
     return (
         <div>
+            <h1>Welcome</h1>
             <button onClick={fetchPoke}>Fetch Pokemon</button>
             <ul>
                 {
