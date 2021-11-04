@@ -1,0 +1,8 @@
+### Get users
+GET http://localhost:3001/api/users/new
+
+### Get companies
+GET http://localhost:3001/api/companies/new
+
+### Get User and company
+GET http://localhost:3001/api/user/company
