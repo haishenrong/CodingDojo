@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import {
   BrowserRouter,
   Switch,
@@ -13,8 +13,22 @@ import One from './components/One'
 const App = () => {
   const [thing, setThing] = useState(null)
   const [type, setType] = useState("people");
+  const [types, setTypes] = useState({});
   const [id, setId] = useState("0");
-  const history = useHistory();
+  //const history = useHistory();
+  
+  useEffect(() => {
+    axios.get(`https://swapi.dev/api/`)
+    .then(response=>response.data)
+    .then(res => {
+      //console.log(res);
+      setTypes(res)})
+    .catch(error => {
+        setThing(null)
+      })
+    //console.log(res);
+  }, []); 
+  
 
   useEffect(() => {
     axios.get(`https://swapi.dev/api/${type}/+${id}/`)
@@ -23,7 +37,6 @@ const App = () => {
     .catch(error => {
         setThing(null)
       })
-    //console.log(res);
   }, [id, type]); 
   
   const queryInfo = (e) => {
@@ -38,12 +51,9 @@ const App = () => {
       <h2>Welcome to Luke's APIwalker</h2>
         <form /*onSubmit={(e) => queryInfo(e)}*/>
           <select id="type" onChange={(e)=>setType(e.target.value)} value={type}>
-            <option value="people">People</option>
-            <option value="planets">Planets</option>
-            <option value="starships">Starships</option>
-            <option value="species">Species</option>
-            <option value="vehicles">Vehicles</option>
-            <option value="films">Films</option>
+            { 
+              Object.entries(types).map( element => <option value={element[0]}>{element[0]}</option>)
+            }
           </select>
           <input type="text" onChange={(e)=>setId(e.target.value)}/>
           <Link to={`/${type}/${id}`}>
