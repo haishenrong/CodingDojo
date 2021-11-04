@@ -38,12 +38,12 @@ const App = () => {
         setThing(null)
       })
   }, [id, type]); 
-  
+  /*
   const queryInfo = (e) => {
     e.preventDefault();
     //history.push(`/${type}/${id}`)
     console.log(thing);
-  }
+  }*/
   return (
     <div className="App">
       <header className="App-header">
@@ -57,7 +57,7 @@ const App = () => {
           </select>
           <input type="text" onChange={(e)=>setId(e.target.value)}/>
           <Link to={`/${type}/${id}`}>
-            <button type="button" onClick={(e) => queryInfo(e)}>Search</button>
+            <button type="button" >Search</button>
           </Link>
         </form>
         <Route exact path="/">
