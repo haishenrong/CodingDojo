@@ -1,0 +1,44 @@
+GET http://localhost:8000/api/users
+###
+GET http://localhost:8000/api/users/61855d23dac643639f25e0b4
+###
+POST http://localhost:8000/api/users/new
+Content-Type: application/json
+
+{
+    "name": "Robert Terwilliger",
+    "age": 43
+}
+###
+PUT http://localhost:8000/api/users/update/61855d23dac643639f25e0b4
+Content-Type: application/json
+
+{
+    "name": "Sideshow Bob",
+    "age": 43
+}
+###
+DELETE http://localhost:8000/api/users/delete/61855d23dac643639f25e0b4
+
+### Jokes
+GET http://localhost:8000/api/jokes
+###
+GET http://localhost:8000/api/jokes/618578a30136276537225e1d
+###
+POST http://localhost:8000/api/jokes/new
+Content-Type: application/json
+
+{
+    "setup": "Who let the dogs out?",
+    "punchline": "I did"
+}
+###
+PUT http://localhost:8000/api/jokes/update/618578a30136276537225e1d
+Content-Type: application/json
+
+{
+    "setup": "Who let the dogs out?",
+    "punchline": "Who, who, who"
+}
+###
+DELETE http://localhost:8000/api/jokes/delete/618578a30136276537225e1d
