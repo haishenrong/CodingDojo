@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ProductForm from '../components/ProductForm';
 import AllProducts from '../components/AllProducts';
 import OneProduct from '../components/OneProduct';
+import UpdateProduct from '../components/UpdateProduct';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
     BrowserRouter as Router,
     Route,
@@ -19,8 +22,11 @@ const Main = () => {
                 </div>
                 <AllProducts/>
             </Route>
-            <Route path="/products/:id">
+            <Route exact path="/products/:id">
                 <OneProduct/>
+            </Route>
+            <Route path="/products/edit/:id">
+                <UpdateProduct />
             </Route>
         </Switch>
         </Router>
