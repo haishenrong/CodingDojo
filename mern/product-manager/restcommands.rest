@@ -1,0 +1,22 @@
+GET http://localhost:8000/api/products
+###
+GET http://localhost:8000/api/products/618974c383703d83043eb08a
+###
+POST http://localhost:8000/api/products
+Content-Type: application/json
+
+{
+    "title": "Wishful Thinking",
+    "price": 3.99,
+    "description": "Sometimes you need to do more than just believing."
+}
+###
+PUT http://localhost:8000/api/users/update/61855d23dac643639f25e0b4
+Content-Type: application/json
+
+{
+    "name": "Sideshow Bob",
+    "age": 43
+}
+###
+DELETE http://localhost:8000/api/users/delete/61855d23dac643639f25e0b4
