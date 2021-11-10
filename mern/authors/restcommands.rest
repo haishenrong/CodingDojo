@@ -1,0 +1,23 @@
+GET http://localhost:8000/api/authors
+###
+GET http://localhost:8000/api/authors/618bf54f96b628d70ba2feef
+###
+POST http://localhost:8000/api/authors
+Content-Type: application/json
+
+{
+    "name": "George Orwell",
+    "birthYear": 1903,
+    "book": "1984"
+}
+###
+PUT http://localhost:8000/api/authors/618bf54f96b628d70ba2feef
+Content-Type: application/json
+
+{
+    "name": "George Orwell",
+    "birthYear": 1903,
+    "book": "1984"
+}
+###
+DELETE http://localhost:8000/api/authors/618bf841f99f25a535e4a049
