@@ -6,6 +6,7 @@ const AuthorForm = () => {
     const [name, setName] = useState(""); 
     const [birthYear, setBirthYear] = useState(0);
     const [book, setBook] = useState(""); 
+    const [errors, setErrors] = useState([]); 
     const { id = null } = useParams();
     const history = useHistory();
 
@@ -20,6 +21,15 @@ const AuthorForm = () => {
             })
     }, [id]);
 
+    const errorHandler = (err) => {
+        const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+        const errorArr = []; // Define a temp error array to push the messages in
+        for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+            errorArr.push(errorResponse[key].message)
+        }
+        // Set Errors
+        setErrors(errorArr);
+    }
     const onSubmitHandler = e => {
         e.preventDefault();
         id === null ? 
@@ -28,21 +38,34 @@ const AuthorForm = () => {
             birthYear,
             book
         })
-        .then(res=>console.log(res.data))
-        .catch(err=>console.log(err)):
+        .then(res=>{
+            console.log(res.data);
+            history.push(`/`);
+            }
+        ).catch(err=>{
+            console.log(err);
+            errorHandler(err);
+        }):
         axios.put(`http://localhost:8000/api/authors/${id}`,{
             name,
             birthYear,
             book
         })
-            .then(res => console.log(res))
-            .catch(err => console.error(err));
-        id === null ? history.push(`/`) : history.push(`/authors/${id}`)
+            .then(res =>  {
+                console.log(res.data);
+                history.push(`/authors/${id}`)}
+            ).catch(err => {
+                errorHandler(err);
+                console.error(err);
+            }
+        );
+        //id === null ? history.push(`/`) : history.push(`/authors/${id}`)
     }
 
     return (
         <div style={{margin: "20px"}}>
         <form onSubmit={onSubmitHandler}>
+            {errors.map((err, index) => <p key={index}>{err}</p>)}
             <p>
                 <label>Name</label><br/>
                 <input type="text" onChange={(e)=>setName(e.target.value)} value={name}/>
