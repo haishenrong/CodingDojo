@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.set('runValidators', true); 
-mongoose.connect("mongodb://localhost/authors", {
+mongoose.connect("mongodb://localhost/exam_db", {
     useNewUrlParser: true,
     useUnifiedTopology: true, })
     .then(() => 

@@ -37,7 +37,7 @@ const OneAuthor = ({deleteAuthor}) => {
                 </button>
             </Link>
             </div>
-            : <h1> Author not found </h1>
+            : <div> <h1> Author not found </h1> <Link to={`/authors/new`}>Make new one?</Link> </div>
         }
         </div>
     )
